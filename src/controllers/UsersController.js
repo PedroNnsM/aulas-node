@@ -1,3 +1,5 @@
+const { hash } = require("bcryptjs");
+
 const AppError = require("../utils/AppError");
 
 const sqliteConnection = require("../database/sqlite");
@@ -18,16 +20,19 @@ class UsersController {
 
     const checkUserExists = await database.get(
       //faz a busca no banco de dados
-      "SELECT * FROM users WHERE email = (?)", [email]
+      "SELECT * FROM users WHERE email = (?)",
+      [email]
     );
 
     if (checkUserExists) {
       throw new AppError("este email ja esta em uso");
     }
+
+    const hashedPassword = await hash(password, 8);
     // Serve para inserir dados no banco de dados
     await database.run(
       "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
-      [name, email, password]
+      [name, email, hashedPassword]
     );
     return response.status(201).json();
   }
