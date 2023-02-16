@@ -3,6 +3,7 @@ const { hash } = require("bcryptjs");
 const AppError = require("../utils/AppError");
 
 const sqliteConnection = require("../database/sqlite");
+const { application } = require("express");
 
 class UsersController {
   /**
@@ -35,6 +36,27 @@ class UsersController {
       [name, email, hashedPassword]
     );
     return response.status(201).json();
+  }
+
+  async update(request, response) {
+    const { name, email } = request.body;
+    const { id } = request.params;
+
+    const database = await sqliteConnection();
+    const user = await database.get("SELECT * FROM users WHERE id = (?)", [id]);
+
+    if (!user) {
+      throw new AppError("Usuario não encontrado");
+    }
+
+    const userWithUpdateEmail = await database.get(
+      "SELECT * FROM users WHERE email = (?) ",
+      [email]
+    );
+
+    if(userWithUpdateEmail && userWithUpdateEmail.id !== id){
+      throw new AppError("Este e-mail ja esta em uso.")
+    }
   }
 }
 
