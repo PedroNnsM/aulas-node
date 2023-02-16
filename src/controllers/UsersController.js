@@ -4,6 +4,7 @@ const AppError = require("../utils/AppError");
 
 const sqliteConnection = require("../database/sqlite");
 const { application } = require("express");
+const { use } = require("../routes");
 
 class UsersController {
   /**
@@ -54,9 +55,24 @@ class UsersController {
       [email]
     );
 
-    if(userWithUpdateEmail && userWithUpdateEmail.id !== id){
-      throw new AppError("Este e-mail ja esta em uso.")
+    if (userWithUpdateEmail && userWithUpdateEmail.id !== id) {
+      throw new AppError("Este e-mail ja esta em uso.");
     }
+
+    user.name = name;
+    user.email = email;
+
+    await database.run(
+      `
+      UPDATE users SET
+      name = ?,
+      email = ?,
+      updated_at = ?,
+      WHERE id = ?`,
+      [user.name, user.email, new Date(), id]
+    );
+
+    return response.status(200).json();
   }
 }
 
