@@ -51,11 +51,11 @@ class UsersController {
     }
 
     const userWithUpdateEmail = await database.get(
-      "SELECT * FROM users WHERE email = (?) ",
+      "SELECT * FROM users WHERE email = (?)",
       [email]
     );
 
-    if (userWithUpdateEmail && userWithUpdateEmail.id !== id) {
+    if(userWithUpdateEmail && userWithUpdateEmail.id !== user.id) {
       throw new AppError("Este e-mail ja esta em uso.");
     }
 
@@ -67,12 +67,12 @@ class UsersController {
       UPDATE users SET
       name = ?,
       email = ?,
-      updated_at = ?,
+      updated_at = ?
       WHERE id = ?`,
       [user.name, user.email, new Date(), id]
     );
 
-    return response.status(200).json();
+    return response.json();
   }
 }
 
