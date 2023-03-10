@@ -30,7 +30,7 @@ class NotesController {
 
     await knex("tags").insert(tagsInsert);
 
-    response.json();
+    return response.json();
   }
 
   async show(request, response) {
@@ -80,13 +80,13 @@ class NotesController {
     }
 
     const userTags = await knex("tags").where({ user_id });
-    const notesWithTags = notes.map( note => {
-      const notesTags = userTags.filter(tag => tag.note_id === note.id)
-      return{
+    const notesWithTags = notes.map((note) => {
+      const notesTags = userTags.filter((tag) => tag.note_id === note.id);
+      return {
         ...note,
-        tag: notesTags
-      }
-    })
+        tag: notesTags,
+      };
+    });
 
     return response.json(notesWithTags);
   }
