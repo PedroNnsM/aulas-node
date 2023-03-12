@@ -3,6 +3,7 @@ const AppError = require("../utils/AppError");
 const authconfig = require("../configs/auth");
 
 function ensureAuthenticated(request, response, next) {
+  
   const authHeader = request.header.authorization;
 
   if (!authHeader) {
