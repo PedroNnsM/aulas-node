@@ -16,18 +16,17 @@ class UserAvatarController {
         "Somente usuários atenticados podem mudar a foto de perfil",
         401
       );
-
-      if (user.avatar) {
-        await diskStorage.deleteFile(user.avatar);
-      }
+    }
+    if (user.avatar) {
+      await diskStorage.deleteFile(user.avatar);
     }
 
     const filename = await diskStorage.saveFile(avatarFileName);
     user.avatar = filename;
 
-    await knex("users").update(user).where({ id: user_id })
+    await knex("users").update(user).where({ id: user_id });
 
-    return response.json(user)
+    return response.json(user);
   }
 }
 
