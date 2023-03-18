@@ -18,7 +18,10 @@ usersRoutes.patch(
   "/avatar",
   ensureAuthenticated,
   upload.single("avatar"),
-  userAvatarController.update
+  (request, response) =>{
+    console.log(request.file.filename)
+    response.json()
+  }
 );
 
 module.exports = usersRoutes;
