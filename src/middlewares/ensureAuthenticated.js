@@ -3,7 +3,7 @@ const AppError = require("../utils/AppError");
 const authconfig = require("../configs/auth");
 
 function ensureAuthenticated(request, response, next) {
-  const authHeader = request.header.authorization;
+  const authHeader = request.headers.authorization;
 
   if (!authHeader) {
     throw new AppError("JWT Token nâo informado", 401);
@@ -17,7 +17,7 @@ function ensureAuthenticated(request, response, next) {
     request.user = {
       id: Number(user_id),
     };
-
+    console.log('passei aqui ')
     return next();
   } catch {
     throw new AppError("JWT Token inválido", 401);
