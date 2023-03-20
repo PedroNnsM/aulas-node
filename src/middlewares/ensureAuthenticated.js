@@ -6,7 +6,7 @@ function ensureAuthenticated(request, response, next) {
   const authHeader = request.headers.authorization;
 
   if (!authHeader) {
-    throw new AppError("JWT Token nâo informado", 401);
+    throw new AppError("JWT Token não informado", 401);
   }
 
   const [, token] = authHeader.split(" ");

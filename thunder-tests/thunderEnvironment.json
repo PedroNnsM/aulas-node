@@ -1,0 +1,28 @@
+[
+  {
+    "_id": "838c565f-bb95-464d-8ad4-513e59e54c28",
+    "name": "(Global Env)",
+    "default": false,
+    "global": true,
+    "sortNum": -2,
+    "created": "2023-03-17T01:49:24.621Z",
+    "modified": "2023-03-17T01:49:24.621Z",
+    "data": [
+      {
+        "name": "token",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "_id": "27120b3a-184a-4e8e-97e3-cdd675fc05bf",
+    "name": "(Local Env)",
+    "default": false,
+    "global": true,
+    "local": true,
+    "sortNum": -1,
+    "created": "2023-03-17T01:49:52.284Z",
+    "modified": "2023-03-17T01:49:52.284Z",
+    "data": []
+  }
+]

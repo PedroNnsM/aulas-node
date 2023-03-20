@@ -1,0 +1,21 @@
+[
+  {
+    "_id": "eba2df8d-fdb7-4726-ab84-1630e8be9d99",
+    "colId": "f64bfb4f-f7bb-464b-9886-340820d5cc1d",
+    "containerId": "",
+    "name": "index",
+    "url": "http://localhost:3333/sessions",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2023-03-17T01:51:00.550Z",
+    "modified": "2023-03-17T01:56:29.972Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\r\n\t\"email\": \"carloasdafas@email.com\",\r\n\t\"password\": \"123\"\r\n}",
+      "form": []
+    },
+    "tests": []
+  }
+]
