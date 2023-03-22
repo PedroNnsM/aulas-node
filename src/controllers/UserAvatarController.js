@@ -13,7 +13,7 @@ class UserAvatarController {
 
     if (!user) {
       throw new AppError(
-        "Somente usuários atenticados podem mudar a foto de perfil",
+        "Somente usuários autenticados podem mudar a foto de perfil",
         401
       );
     }

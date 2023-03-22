@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "_id": "d2e5f9f6-28e7-4be2-b272-19e5b12c564a",
+    "colId": "history",
+    "containerId": "",
+    "name": "{{base_url}}/sessions",
+    "url": "{{base_url}}/sessions",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-03-22T08:38:30.597Z",
+    "modified": "2023-03-22T08:38:30.597Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  }
+]
