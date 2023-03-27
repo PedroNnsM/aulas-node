@@ -1,8 +1,11 @@
+
 const knex = require("../database/knex");
 const AppError = require("../utils/AppError");
 const { compare } = require("bcryptjs");
 const authConfig = require("../configs/auth");
 const { sign } = require("jsonwebtoken");
+/* It receives an email and password, checks if the user exists, checks if the password is correct, and
+returns the user and a token */
 
 class SessionsController {
   async create(request, response) {

@@ -17,7 +17,7 @@ function ensureAuthenticated(request, response, next) {
     request.user = {
       id: Number(user_id),
     };
-    console.log('passei aqui ')
+   
     return next();
   } catch {
     throw new AppError("JWT Token inválido", 401);
@@ -25,3 +25,4 @@ function ensureAuthenticated(request, response, next) {
 }
 
 module.exports = ensureAuthenticated;
+/* Trying to verify the token. */
