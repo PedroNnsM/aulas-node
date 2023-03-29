@@ -9,7 +9,7 @@ class UserAvatarController {
 
     const diskStorage = new DiskStorage();
 
-    const user = await knex("users").where({ id: user_id });
+    const user = await knex("users").where({ id: user_id }).first();
 
     if (!user) {
       throw new AppError(
