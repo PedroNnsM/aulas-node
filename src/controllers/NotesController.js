@@ -61,7 +61,7 @@ class NotesController {
     const { title, tags } = request.query;
 
     const user_id = request.user.id;
-    
+
     let notes;
 
     if (tags) {

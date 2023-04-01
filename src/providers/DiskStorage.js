@@ -1,7 +1,5 @@
-const { FILE } = require("dns");
 const fs = require("fs");
 const path = require("path");
-
 const uploadConfig = require("../configs/upload");
 
 class DiskStorage {
@@ -27,5 +25,4 @@ class DiskStorage {
   }
 }
 
-
-module.exports = DiskStorage
+module.exports = DiskStorage;
