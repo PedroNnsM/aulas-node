@@ -87,7 +87,7 @@ class NotesController {
       const notesTags = userTags.filter((tag) => tag.note_id === note.id);
       return {
         ...note,
-        tag: notesTags,
+        tags: notesTags,
       };
     });
 
