@@ -3,20 +3,16 @@ const { hash, compare } = require("bcryptjs");
 const AppError = require("../utils/AppError");
 
 const sqliteConnection = require("../database/sqlite");
-const { application } = require("express");
-const { use } = require("../routes");
+
+const UserRepository = require("../repositories/userRepository");
 
 class UsersController {
   async create(request, response) {
     const { name, email, password } = request.body;
 
-    const database = await sqliteConnection();
+    const userRepository = new UserRepository();
 
-    const checkUserExists = await database.get(
-      //faz a busca no banco de dados
-      "SELECT * FROM users WHERE email = (?)",
-      [email]
-    );
+    const checkUserExists = userRepository.findByEmail(email);
 
     if (checkUserExists) {
       throw new AppError("este email ja esta em uso");
@@ -24,10 +20,9 @@ class UsersController {
 
     const hashedPassword = await hash(password, 8);
     // Serve para inserir dados no banco de dados
-    await database.run(
-      "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
-      [name, email, hashedPassword]
-    );
+
+    await userRepository.create({ name, email, password: hashedPassword });
+
     return response.status(201).json();
   }
 
